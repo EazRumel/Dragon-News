@@ -3,6 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 }
+a.active {
+  background-color:#E7E7E7;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

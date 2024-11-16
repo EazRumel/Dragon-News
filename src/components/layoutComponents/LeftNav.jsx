@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const LeftNav = () => {
   const [categories,setCategories] = useState([])
@@ -9,11 +10,11 @@ const LeftNav = () => {
   },[])
   return (
     <div>
-      <h2>Left nav side({categories.length})</h2>
+      <h2 className='font-bold'>Left nav side({categories.length})</h2>
      <div className='flex flex-col gap-2'>
       {
         categories.map((category) =>(
-          <button className='btn bg-base-100 border-none' key={category.category_id}>{category.category_name}</button>
+          <NavLink to={`/category/${category.category_id}`} className='btn bg-base-100 border-none' key={category.category_id}>{category.category_name}</NavLink>
         ))
       }
      </div>

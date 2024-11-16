@@ -1,9 +1,12 @@
 import React from 'react';
+import LoginWith from './LoginWith';
+import FindUsOn from './FindUsOn';
 
 const RightNav = () => {
   return (
-    <div>
-       <h2>Right Nav Content</h2>
+    <div className='space-y-5'>
+       <LoginWith></LoginWith>
+       <FindUsOn></FindUsOn>
     </div>
   );
 };
