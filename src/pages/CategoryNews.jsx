@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import NewsCard from "../../src/components/NewsCard"
 
 const CategoryNews = () => {
-   const {data  : news} = useLoaderData()
+   const {data:news} = useLoaderData()
    console.log(news)
   return (
     <div>
