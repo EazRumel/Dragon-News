@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
-  const {createNewUser , setUser } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const [errored,setErrored] = useState({})
+  
+  const {createNewUser , setUser , updateUserProfile } = useContext(AuthContext);
   const handleRegister = (event) => {
       event.preventDefault();
       // const name = event.target.name.value
@@ -14,6 +17,10 @@ const Register = () => {
     //new way to do the same process
     const form = new FormData(event.target)
     const name = form.get("name")
+    if(name.length < 4){
+      setErrored({...errored, name:'name must be at least 4 character long'})
+      return;
+    }
     const email = form.get("email")
     const photoUrl = form.get("photo")
     const password = form.get("password")
@@ -24,6 +31,13 @@ const Register = () => {
       const user = result.user
       setUser(user)
       console.log(user)
+      updateUserProfile({displayName:name,photoURL:photoUrl})
+      .then(() => {
+        navigate("/")
+      })
+      .catch((error) => {
+        console.log(error.message)
+      })
     })
     .catch((error) => {
       console.log(error.message)
@@ -39,6 +53,11 @@ const Register = () => {
           <span className="label-text">Name</span>
         </label>
         <input name="name" type="text" placeholder="name" className="input input-bordered" required />
+       {
+        errored.name && (<label className='text-red-500 text-sm'>
+          {errored.name}
+        </label>)
+       }
       </div>
       <div className="form-control">
         <label className="label">

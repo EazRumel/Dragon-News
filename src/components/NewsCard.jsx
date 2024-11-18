@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaRegStar, FaRegEye, FaShareAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const NewsCard = (props = {}) => {
   const {news} = props || {}
@@ -32,7 +33,7 @@ const NewsCard = (props = {}) => {
       {/* Details */}
       <div className="p-4">
         <p className="text-sm text-gray-700">{news.details.substring(0, 120)}...</p>
-        <button className="text-primary font-semibold">Read More</button>
+        <Link to={`/news/${news._id}`} className="text-primary font-semibold">Read More</Link>
       </div>
 
       {/* Ratings and Views */}
